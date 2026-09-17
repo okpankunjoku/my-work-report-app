@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 
 import {
   FaChevronDown,
@@ -130,7 +131,7 @@ function Navbar() {
             className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0"
           >
             <img
-              src="/src/assets/images/logo.png"
+              src={logo}
               alt="Work Reports Logo"
               className="w-9 h-9 sm:w-10 sm:h-10 object-contain flex-shrink-0"
             />
@@ -159,11 +160,10 @@ function Navbar() {
 
             <Link
               to="/dashboard"
-              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${
-                isActive("/dashboard")
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${isActive("/dashboard")
                   ? "bg-blue-900"
                   : "hover:bg-blue-600"
-              }`}
+                }`}
             >
               <FaTachometerAlt />
               Dashboard
@@ -184,18 +184,16 @@ function Navbar() {
                     setAdminOpen((prev) => !prev);
                     setUserOpen(false);
                   }}
-                  className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${
-                    isAdminRoute
+                  className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${isAdminRoute
                       ? "bg-blue-900"
                       : "hover:bg-blue-600"
-                  }`}
+                    }`}
                 >
                   Admin
 
                   <FaChevronDown
-                    className={`text-xs transition-transform ${
-                      adminOpen ? "rotate-180" : ""
-                    }`}
+                    className={`text-xs transition-transform ${adminOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
 
@@ -205,11 +203,10 @@ function Navbar() {
                     <Link
                       to="/admin/dashboard"
                       onClick={() => setAdminOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${
-                        isActive("/admin/dashboard")
+                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${isActive("/admin/dashboard")
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-800 hover:bg-blue-100 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       <FaTachometerAlt />
                       Admin Dashboard
@@ -218,11 +215,10 @@ function Navbar() {
                     <Link
                       to="/admin/attendance"
                       onClick={() => setAdminOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${
-                        isActive("/admin/attendance")
+                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${isActive("/admin/attendance")
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-800 hover:bg-blue-100 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       <FaCalendarCheck />
                       Admin Attendance
@@ -231,11 +227,10 @@ function Navbar() {
                     <Link
                       to="/admin/reports"
                       onClick={() => setAdminOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${
-                        isActive("/admin/reports")
+                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${isActive("/admin/reports")
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-800 hover:bg-blue-100 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       <FaFileAlt />
                       Admin Reports
@@ -244,11 +239,10 @@ function Navbar() {
                     <Link
                       to="/employees"
                       onClick={() => setAdminOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${
-                        isActive("/employees")
+                      className={`flex items-center gap-3 px-4 py-3 text-sm transition ${isActive("/employees")
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-800 hover:bg-blue-100 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       <FaUsers />
                       Employee Management
@@ -264,11 +258,10 @@ function Navbar() {
 
             <Link
               to="/attendance"
-              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${
-                isActive("/attendance")
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${isActive("/attendance")
                   ? "bg-blue-900"
                   : "hover:bg-blue-600"
-              }`}
+                }`}
             >
               <FaCalendarCheck />
               Attendance
@@ -280,11 +273,10 @@ function Navbar() {
 
             <Link
               to="/reports"
-              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${
-                isActive("/reports")
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${isActive("/reports")
                   ? "bg-blue-900"
                   : "hover:bg-blue-600"
-              }`}
+                }`}
             >
               <FaFileAlt />
               Reports
@@ -296,11 +288,10 @@ function Navbar() {
 
             <Link
               to="/profile"
-              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${
-                isActive("/profile")
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition ${isActive("/profile")
                   ? "bg-blue-900"
                   : "hover:bg-blue-600"
-              }`}
+                }`}
             >
               <FaUser />
               Profile
@@ -350,9 +341,8 @@ function Navbar() {
                 </div>
 
                 <FaChevronDown
-                  className={`text-xs transition-transform ${
-                    userOpen ? "rotate-180" : ""
-                  }`}
+                  className={`text-xs transition-transform ${userOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -473,11 +463,10 @@ function Navbar() {
               <Link
                 to="/dashboard"
                 onClick={closeMobileMenu}
-                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${
-                  isActive("/dashboard")
+                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${isActive("/dashboard")
                     ? "bg-blue-900"
                     : "hover:bg-blue-600"
-                }`}
+                  }`}
               >
                 <FaTachometerAlt />
                 Dashboard
@@ -496,11 +485,10 @@ function Navbar() {
                       setAdminOpen((prev) => !prev);
                       setUserOpen(false);
                     }}
-                    className={`w-full px-4 py-3 rounded-lg flex items-center justify-between transition ${
-                      isAdminRoute
+                    className={`w-full px-4 py-3 rounded-lg flex items-center justify-between transition ${isAdminRoute
                         ? "bg-blue-900"
                         : "hover:bg-blue-600"
-                    }`}
+                      }`}
                   >
                     <span className="flex items-center gap-3">
                       <FaUsers />
@@ -508,9 +496,8 @@ function Navbar() {
                     </span>
 
                     <FaChevronDown
-                      className={`text-xs transition-transform ${
-                        adminOpen ? "rotate-180" : ""
-                      }`}
+                      className={`text-xs transition-transform ${adminOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
@@ -520,11 +507,10 @@ function Navbar() {
                       <Link
                         to="/admin/dashboard"
                         onClick={closeMobileMenu}
-                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${
-                          isActive("/admin/dashboard")
+                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${isActive("/admin/dashboard")
                             ? "bg-blue-900"
                             : "hover:bg-blue-600"
-                        }`}
+                          }`}
                       >
                         <FaTachometerAlt />
                         Admin Dashboard
@@ -533,11 +519,10 @@ function Navbar() {
                       <Link
                         to="/admin/attendance"
                         onClick={closeMobileMenu}
-                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${
-                          isActive("/admin/attendance")
+                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${isActive("/admin/attendance")
                             ? "bg-blue-900"
                             : "hover:bg-blue-600"
-                        }`}
+                          }`}
                       >
                         <FaCalendarCheck />
                         Admin Attendance
@@ -546,11 +531,10 @@ function Navbar() {
                       <Link
                         to="/admin/reports"
                         onClick={closeMobileMenu}
-                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${
-                          isActive("/admin/reports")
+                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${isActive("/admin/reports")
                             ? "bg-blue-900"
                             : "hover:bg-blue-600"
-                        }`}
+                          }`}
                       >
                         <FaFileAlt />
                         Admin Reports
@@ -559,11 +543,10 @@ function Navbar() {
                       <Link
                         to="/employees"
                         onClick={closeMobileMenu}
-                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${
-                          isActive("/employees")
+                        className={`px-4 py-3 rounded-lg flex items-center gap-3 text-sm transition ${isActive("/employees")
                             ? "bg-blue-900"
                             : "hover:bg-blue-600"
-                        }`}
+                          }`}
                       >
                         <FaUsers />
                         Employee Management
@@ -578,11 +561,10 @@ function Navbar() {
               <Link
                 to="/attendance"
                 onClick={closeMobileMenu}
-                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${
-                  isActive("/attendance")
+                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${isActive("/attendance")
                     ? "bg-blue-900"
                     : "hover:bg-blue-600"
-                }`}
+                  }`}
               >
                 <FaCalendarCheck />
                 Attendance
@@ -593,11 +575,10 @@ function Navbar() {
               <Link
                 to="/reports"
                 onClick={closeMobileMenu}
-                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${
-                  isActive("/reports")
+                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${isActive("/reports")
                     ? "bg-blue-900"
                     : "hover:bg-blue-600"
-                }`}
+                  }`}
               >
                 <FaFileAlt />
                 Reports
@@ -608,11 +589,10 @@ function Navbar() {
               <Link
                 to="/profile"
                 onClick={closeMobileMenu}
-                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${
-                  isActive("/profile")
+                className={`px-4 py-3 rounded-lg flex items-center gap-3 transition ${isActive("/profile")
                     ? "bg-blue-900"
                     : "hover:bg-blue-600"
-                }`}
+                  }`}
               >
                 <FaUser />
                 Profile
