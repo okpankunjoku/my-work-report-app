@@ -1,25 +1,10 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 // ==========================================
-// EMAIL TRANSPORTER
+// RESEND EMAIL SERVICE
 // ==========================================
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-
-  requireTLS: true,
-
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000,
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ==========================================
 // VERIFY EMAIL CONNECTION
@@ -27,12 +12,14 @@ const transporter = nodemailer.createTransport({
 
 const verifyEmailConnection = async () => {
   try {
-    await transporter.verify();
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is not configured.");
+    }
 
-    console.log("✅ Email service connected successfully.");
+    console.log("✅ Resend email service configured successfully.");
   } catch (error) {
     console.error(
-      "❌ Email service connection failed:",
+      "❌ Email service configuration failed:",
       error.message
     );
   }
@@ -53,20 +40,33 @@ const sendEmail = async ({
       throw new Error("Recipient email address is required.");
     }
 
-    const mailOptions = {
-      from: `"ClockIn Pro" <${process.env.EMAIL_USER}>`,
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY is not configured.");
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: "ClockIn Pro <onboarding@resend.dev>",
       to,
       subject,
       text,
       html,
-    };
+    });
 
-    const info = await transporter.sendMail(mailOptions);
+    if (error) {
+      console.error(
+        "❌ Resend email error:",
+        error.message || error
+      );
+
+      throw new Error(
+        error.message || "Failed to send email."
+      );
+    }
 
     console.log(`📧 Email sent successfully to ${to}`);
-    console.log("Message ID:", info.messageId);
+    console.log("Message ID:", data?.id);
 
-    return info;
+    return data;
   } catch (error) {
     console.error(
       "❌ Email sending failed:",
@@ -78,7 +78,7 @@ const sendEmail = async ({
 };
 
 module.exports = {
-  transporter,
+  resend,
   verifyEmailConnection,
   sendEmail,
 };
