@@ -252,6 +252,19 @@ function Login() {
             icon={<FaLock />}
           />
 
+          {/* ==========================================
+              FORGOT PASSWORD
+          ========================================== */}
+
+          <div className="text-right -mt-2">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-blue-600 font-semibold hover:text-blue-700 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
           {/* Login Button */}
 
           <Button
