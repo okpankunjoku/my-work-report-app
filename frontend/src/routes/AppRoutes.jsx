@@ -7,6 +7,7 @@ import {
 
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Attendance from "../pages/Attendance/Attendance";
@@ -45,6 +46,13 @@ function AppRoutes() {
         <Route
           path="/register"
           element={<Register />}
+        />
+
+        {/* FORGOT PASSWORD */}
+
+        <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
         />
 
         {/* ==========================================
