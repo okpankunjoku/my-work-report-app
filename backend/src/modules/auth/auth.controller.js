@@ -1,9 +1,15 @@
 const authService = require("./auth.service");
 const successResponse = require("../../utils/successResponse");
 
+// ==========================================
+// Register
+// ==========================================
+
 const register = async (req, res, next) => {
   try {
-    const result = await authService.register(req.body);
+    const result = await authService.register(
+      req.body
+    );
 
     return successResponse(
       res,
@@ -16,11 +22,18 @@ const register = async (req, res, next) => {
   }
 };
 
+// ==========================================
+// Login
+// ==========================================
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const result = await authService.login(email, password);
+    const result = await authService.login(
+      email,
+      password
+    );
 
     return successResponse(
       res,
@@ -32,16 +45,67 @@ const login = async (req, res, next) => {
   }
 };
 
-const forgotPassword = async (req, res) => {
-  return successResponse(
-    res,
-    "Forgot password feature coming soon."
-  );
+// ==========================================
+// Forgot Password
+// ==========================================
+
+const forgotPassword = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const { email } = req.body;
+
+    await authService.forgotPassword(email);
+
+    return successResponse(
+      res,
+      "If an account with that email exists, a password reset link has been sent."
+    );
+  } catch (error) {
+    next(error);
+  }
 };
+
+// ==========================================
+// Reset Password
+// ==========================================
+
+const resetPassword = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    const result =
+      await authService.resetPassword(
+        token,
+        password
+      );
+
+    return successResponse(
+      res,
+      result.message
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ==========================================
+// Get Logged-in Employee
+// ==========================================
 
 const getMe = async (req, res, next) => {
   try {
-    const employee = await authService.getMe(req.user._id);
+    const employee =
+      await authService.getMe(
+        req.user._id
+      );
 
     return successResponse(
       res,
@@ -53,9 +117,14 @@ const getMe = async (req, res, next) => {
   }
 };
 
+// ==========================================
+// Export
+// ==========================================
+
 module.exports = {
   register,
   login,
   forgotPassword,
+  resetPassword,
   getMe,
 };

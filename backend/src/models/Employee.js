@@ -65,6 +65,22 @@ const employeeSchema = new mongoose.Schema(
     lastLogin: {
       type: Date,
     },
+
+    // ==========================================
+    // PASSWORD RESET
+    // ==========================================
+
+    resetPasswordToken: {
+      type: String,
+      default: null,
+      select: false,
+    },
+
+    resetPasswordExpires: {
+      type: Date,
+      default: null,
+      select: false,
+    },
   },
   {
     timestamps: true,

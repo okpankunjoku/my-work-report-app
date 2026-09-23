@@ -5,15 +5,20 @@ const router = express.Router();
 const authController = require("./auth.controller");
 
 const validate = require("../../middlewares/validate.middleware");
+
 const { protect } = require("../../middlewares/auth.middleware");
 
 const {
   registerValidation,
   loginValidation,
   forgotPasswordValidation,
+  resetPasswordValidation,
 } = require("./auth.validation");
 
+// ==========================================
 // Register
+// ==========================================
+
 router.post(
   "/register",
   registerValidation,
@@ -21,7 +26,10 @@ router.post(
   authController.register
 );
 
+// ==========================================
 // Login
+// ==========================================
+
 router.post(
   "/login",
   loginValidation,
@@ -29,7 +37,10 @@ router.post(
   authController.login
 );
 
+// ==========================================
 // Forgot Password
+// ==========================================
+
 router.post(
   "/forgot-password",
   forgotPasswordValidation,
@@ -37,7 +48,21 @@ router.post(
   authController.forgotPassword
 );
 
+// ==========================================
+// Reset Password
+// ==========================================
+
+router.post(
+  "/reset-password/:token",
+  resetPasswordValidation,
+  validate,
+  authController.resetPassword
+);
+
+// ==========================================
 // Get Logged-in Employee
+// ==========================================
+
 router.get(
   "/me",
   protect,

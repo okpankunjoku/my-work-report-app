@@ -1,5 +1,9 @@
 const { body } = require("express-validator");
 
+// ==========================================
+// Register Validation
+// ==========================================
+
 const registerValidation = [
   body("fullName")
     .trim()
@@ -18,7 +22,9 @@ const registerValidation = [
 
   body("password")
     .isLength({ min: 6 })
-    .withMessage("Password must be at least 6 characters"),
+    .withMessage(
+      "Password must be at least 6 characters"
+    ),
 
   body("phone")
     .optional()
@@ -35,6 +41,10 @@ const registerValidation = [
     .withMessage("Position is required"),
 ];
 
+// ==========================================
+// Login Validation
+// ==========================================
+
 const loginValidation = [
   body("email")
     .isEmail()
@@ -46,6 +56,10 @@ const loginValidation = [
     .withMessage("Password is required"),
 ];
 
+// ==========================================
+// Forgot Password Validation
+// ==========================================
+
 const forgotPasswordValidation = [
   body("email")
     .isEmail()
@@ -53,8 +67,25 @@ const forgotPasswordValidation = [
     .normalizeEmail(),
 ];
 
+// ==========================================
+// Reset Password Validation
+// ==========================================
+
+const resetPasswordValidation = [
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage(
+      "Password must be at least 6 characters"
+    ),
+];
+
+// ==========================================
+// Export
+// ==========================================
+
 module.exports = {
   registerValidation,
   loginValidation,
   forgotPasswordValidation,
+  resetPasswordValidation,
 };
