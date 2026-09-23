@@ -8,6 +8,7 @@ import {
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword/ResetPassword";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Attendance from "../pages/Attendance/Attendance";
@@ -53,6 +54,13 @@ function AppRoutes() {
         <Route
           path="/forgot-password"
           element={<ForgotPassword />}
+        />
+
+        {/* RESET PASSWORD */}
+
+        <Route
+          path="/reset-password/:token"
+          element={<ResetPassword />}
         />
 
         {/* ==========================================
